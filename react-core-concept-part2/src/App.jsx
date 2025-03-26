@@ -1,8 +1,19 @@
 import Counter from './counter';
 import Batsman from './Batsman';
+import Users from './User';
 import './App.css'
+import { Suspense } from 'react';
+
+//M-1
+const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
+.then(Response => Response.json())
+
 
 function App() {
+  //API 
+  const fetchPhotos= fetchPhotos();
+
+
   //Different ways to handle events in React
   //Method-1 
   function handleClick() {
@@ -22,6 +33,9 @@ function App() {
   return (
     <>
       <h3>Vite + React</h3>
+      <Suspense fallback={<h3>loading...........</h3>}>
+      <Users fetchUsers={fetchUsers} ></Users>
+      </Suspense>
       <Counter></Counter>
       <Batsman></Batsman>
       {/* <button onclick="handleClick()" >Click Me</button> */}
