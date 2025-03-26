@@ -40,7 +40,8 @@
 .read-the-docs {
   color: #888;
 }
-.card{
-  border: goldenrod;
-  border-radius: 4px;
+.card {
+  border: 2px solid #0498ace0;
+  padding: 16px;
+  border-radius: 8px;
 }

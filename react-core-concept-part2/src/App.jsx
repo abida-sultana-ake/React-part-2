@@ -1,18 +1,28 @@
 import Counter from './counter';
 import Batsman from './Batsman';
-import Users from './User';
+// import Users from './User';
+import Posts from './Posts';
 import './App.css'
 import { Suspense } from 'react';
 
 //M-1
-const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
-.then(Response => Response.json())
+// const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
+// .then(Response => Response.json())
+
+//M-2
+const fetchPosts = async() => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  return res.json();
+}
+
 
 
 function App() {
-  //API 
-  const fetchPhotos= fetchPhotos();
+  //API-1
+  //const fetchPhotos= fetchPhotos();
 
+  //API-2
+  const postsPromise = fetchPosts();
 
   //Different ways to handle events in React
   //Method-1 
@@ -33,9 +43,17 @@ function App() {
   return (
     <>
       <h3>Vite + React</h3>
-      <Suspense fallback={<h3>loading...........</h3>}>
+      {/* Load dynamic data using async await */}
+      {/* ex-1 */}
+      {/* <Suspense fallback={<h3>loading...........</h3>}>
       <Users fetchUsers={fetchUsers} ></Users>
+      </Suspense> */}
+      {/* ex-2 */}
+      <Suspense fallback={<h3>Wait a sec......</h3>}>
+      <Posts postsPromise={postsPromise}></Posts>
       </Suspense>
+
+
       <Counter></Counter>
       <Batsman></Batsman>
       {/* <button onclick="handleClick()" >Click Me</button> */}
